@@ -1,5 +1,8 @@
 package com.medHeadReservation.api.service;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +17,8 @@ public class ReservationService {
 
     public Reservation saveReservation(Reservation reservation) {
         return reservationRepository.save(reservation);
+    }
+    public List <Reservation> getAllReservations (){
+        return reservationRepository.findAll();
     }
 }
