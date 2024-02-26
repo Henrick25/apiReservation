@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.medHeadReservation.api.dto.ReservationDTO;
 import com.medHeadReservation.api.model.Reservation;
 import com.medHeadReservation.api.service.HospitalService;
 import com.medHeadReservation.api.service.ReservationService;
@@ -46,8 +47,9 @@ public class ReservationController {
     }
 
     @PutMapping("/api/reservations/{id}")
-    public ResponseEntity<Reservation> validerReservation(@PathVariable Long id, @RequestBody Reservation reservation) throws IOException {
+    public ResponseEntity<Reservation> validerReservation(@PathVariable Long id, @RequestBody ReservationDTO reservationDTO) throws IOException {
         // Logique pour valider et mettre à jour la réservation
+        Reservation reservation = reservationService.updateEtatDemande(id, reservationDTO.getEtatDemande());
 
          emailService.sendSimpleMessage(reservation.getMail() , "Confirmation de réservation", "Votre réservation a été traitée et confirmée.");
         return ResponseEntity.ok(reservation);

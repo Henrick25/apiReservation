@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.medHeadReservation.api.model.Reservation;
 import com.medHeadReservation.api.repository.ReservationRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class ReservationService {
 
@@ -21,4 +23,10 @@ public class ReservationService {
     public List <Reservation> getAllReservations (){
         return reservationRepository.findAll();
     }
+    public Reservation updateEtatDemande(Long id, Boolean nouvelEtat) {
+    Reservation reservation = reservationRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Reservation non trouvée avec l'id: " + id));
+    reservation.setEtat_demande(nouvelEtat);
+    return reservationRepository.save(reservation);
+}
 }

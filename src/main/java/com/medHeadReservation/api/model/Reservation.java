@@ -38,4 +38,7 @@ public class Reservation {
 
     @Column(nullable = false, length = 255)
     private String etat;
+
+    @Column(nullable = false, length = 255)
+    private Boolean etat_demande;
 }
