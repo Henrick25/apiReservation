@@ -32,7 +32,7 @@ public class ReservationController {
 
     @PostMapping("/api/web/reservation")
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
-        HospitalService.decrementLit(reservation.getHospitalId());
+      
         return ResponseEntity.ok(reservationService.saveReservation(reservation));
     }
       @GetMapping("/api/reservations/list")
@@ -50,7 +50,7 @@ public class ReservationController {
     public ResponseEntity<Reservation> validerReservation(@PathVariable Long id, @RequestBody ReservationDTO reservationDTO) throws IOException {
         // Logique pour valider et mettre à jour la réservation
         Reservation reservation = reservationService.updateEtatDemande(id,reservationDTO.getEtat_demande());
-
+        HospitalService.decrementLit(reservationDTO.getHospitalId());
          emailService.sendSimpleMessage(reservation.getMail() , "Confirmation de réservation", "Votre réservation a été traitée et confirmée.");
         return ResponseEntity.ok(reservation);
     }
