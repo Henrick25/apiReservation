@@ -17,7 +17,7 @@ public class ReservationDTO {
     private String sexe;
     private String heure;
     private String etat;
-    private Boolean etatDemande;
+    private Boolean etat_demande;
 
     // Constructors, Getters and Setters
 }

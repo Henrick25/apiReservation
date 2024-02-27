@@ -49,7 +49,7 @@ public class ReservationController {
     @PutMapping("/api/reservations/{id}")
     public ResponseEntity<Reservation> validerReservation(@PathVariable Long id, @RequestBody ReservationDTO reservationDTO) throws IOException {
         // Logique pour valider et mettre à jour la réservation
-        Reservation reservation = reservationService.updateEtatDemande(id, reservationDTO.getEtatDemande());
+        Reservation reservation = reservationService.updateEtatDemande(id,reservationDTO.getEtat_demande());
 
          emailService.sendSimpleMessage(reservation.getMail() , "Confirmation de réservation", "Votre réservation a été traitée et confirmée.");
         return ResponseEntity.ok(reservation);
