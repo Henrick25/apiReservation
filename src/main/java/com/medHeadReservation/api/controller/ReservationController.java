@@ -36,15 +36,15 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.saveReservation(reservation));
     }
       @GetMapping("/api/reservations/list")
-    public ResponseEntity<List<Reservation>> getAllReservations() {
-        List<Reservation> reservations = reservationService.getAllReservations();
+    public ResponseEntity<List<ReservationDTO>> getAllReservations() {
+        List<ReservationDTO> reservations = reservationService.getAllReservations();
         return ResponseEntity.ok(reservations);
     }
-     @DeleteMapping("/{id}")
-    public ResponseEntity<?> supprimerReservation(@PathVariable Long id) {
+   //  @DeleteMapping("/{id}")
+   // public ResponseEntity<?> supprimerReservation(@PathVariable Long id) {
         // Logique pour supprimer la réservation
-        return ResponseEntity.ok().build();
-    }
+     //   return ResponseEntity.ok().build();
+    //}
 
     @PutMapping("/api/reservations/{id}")
     public ResponseEntity<Reservation> validerReservation(@PathVariable Long id, @RequestBody ReservationDTO reservationDTO) throws IOException {
