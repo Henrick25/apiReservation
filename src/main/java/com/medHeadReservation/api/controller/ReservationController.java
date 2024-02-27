@@ -31,9 +31,9 @@ public class ReservationController {
     private EmailService emailService;
 
     @PostMapping("/api/web/reservation")
-    public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
-      
-        return ResponseEntity.ok(reservationService.saveReservation(reservation));
+    public ResponseEntity<ReservationDTO> createReservation(@RequestBody ReservationDTO reservationDTO) {
+        ReservationDTO savedReservationDTO = reservationService.saveReservation(reservationDTO);
+        return ResponseEntity.ok(savedReservationDTO);
     }
       @GetMapping("/api/reservations/list")
     public ResponseEntity<List<ReservationDTO>> getAllReservations() {

@@ -20,8 +20,15 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    public Reservation saveReservation(Reservation reservation) {
-        return reservationRepository.save(reservation);
+    public ReservationDTO saveReservation(ReservationDTO reservationDTO) {
+        // Convertit ReservationDTO en Reservation
+        Reservation reservation = ReservationMapper.toEntity(reservationDTO);
+        
+        // Sauvegarde l'entité Reservation
+        Reservation savedReservation = reservationRepository.save(reservation);
+        
+        // Convertit l'entité Reservation sauvegardée en ReservationDTO
+        return ReservationMapper.toDTO(savedReservation);
     }
    
      public List<ReservationDTO> getAllReservations() {
