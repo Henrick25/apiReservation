@@ -8,8 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 import com.medHeadReservation.api.model.Hospital;
 
 public interface HospitalRepository extends JpaRepository<Hospital, Long>  {
-	 @Modifying
-	    @Transactional
-	    @Query("update Hospital h set h.lit = h.lit - 1 where h.id = :hospitalId")
-	    void decrementLitByHospitalId(Long hospitalId);
+	
 }

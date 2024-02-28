@@ -12,7 +12,6 @@ public class HospitalService {
 	    private HospitalRepository hospitalRepository;
 
 	    public void decrementLit(Long hospitalId) {
-	        hospitalRepository.decrementLitByHospitalId(hospitalId);
 			Hospital hospital = hospitalRepository.findById(hospitalId).orElseThrow(() -> new EntityNotFoundException("Reservation non trouvée avec l'id: " + hospitalId));
 		Long lit= 	hospital.getLit();
 		hospital.setLit(lit);
